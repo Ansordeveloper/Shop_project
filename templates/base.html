@@ -12,9 +12,18 @@
             <a href="{% url 'about' %}">Biz Haqimizda</a>
         </b>
         </header>
-
+        {% if user.is_authenticated %}
+            <p>Xush kelibsiz {{ user.username }}</p>
+            <p><a href="{% url 'logout' %}">Chiqib ketish</a></p>
+        {% else %}
+            <a href="{% url 'login' %}">Saytga Kirish</a>
+        {% endif %}
+        <div>
         {% block content %}
         {% endblock content %}
-
+        </div>
+        <footer>
+            <a href="{% url 'post_new' %}">Yangi post qo'shish</a>
+        </footer>
     </body>
 </html>
